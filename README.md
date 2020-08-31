@@ -7,70 +7,56 @@
 | nickname             | string  | null: false |
 | email                | string  | null: false |
 | password             | string  | null: false |
-| family_name(kanji)   | string  | null: false |
-| first_name(kanji)    | string  | null: false |
-| family_name(katakana)| string  | null: false |
-| first_name(katakana) | string  | null: false |
+| family_name_kanji    | string  | null: false |
+| first_name_kanji     | string  | null: false |
+| family_name_katakana | string  | null: false |
+| first_name_katakana  | string  | null: false |
 | birthday             | date    | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :buys
-- has_many :messages
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| image           | string     | null: false                    |
-| name            | string     | null: false                    |
-| explanation     | text       | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
-| shipping charges| integer    | null: false                    |
-| shipping region | string     | null: false                    |
-| shipping days   | string     | null: false                    |
-| selling price   | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
+| Column          | Type       | Options                         |
+| --------------- | ---------- | ------------------------------- |
+| image           | string     | null: false                     |
+| name            | string     | null: false                     |
+| explanation     | text       | null: false                     |
+| selling price   | integer    | null: false                     |
+| user_id         | integer    | null: false, foreign_key: true  |
 
 ### Association
 
 - belongs_to :user
-- has_many :buys
-- has_many :comments
+- has_one :buy
 
 ## buys テーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| card number           | integer    | null: false                    | 
-| expiration date(month)| integer    | null: false                    |
-| expiration date(year) | integer    | null: false                    |
-| security code         | integer    | null: false                    |
-| postal code           | integer    | null: false                    |
-| prefectures           | string     | null: false                    |
-| city                  | string     | null: false                    |
-| address               | string     | null: false                    |
-| building name         | string     |                                |
-| phone number          | integer    | null: false                    |
-| item_id               | references | null: false, foreign_key: true |
-| user_id               | references | null: false, foreign_key: true |
+| user_id               | integer    | null: false, foreign_key: true |
+| item_id               | integer    | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one :shipping_address
 
-## commnts テーブル
+## shipping_addresses テーブル
 
-| Column               | Type       | Options                        |
-| -------------------- | ---------- | ------------------------------ |
-| comment              | text       |                                |
-| item_id              | references | null: false, foreign_key: true |
-| user_id              | references | null: false, foreign_key: true |
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
+| postal code    | string  | null: false                    |
+| city           | string  | null: false                    |
+| adress         | string  | null: false                    |
+| bulilding_name | string  |                                |
+| phone_number   | string  | null: false                    |
+| buy_id         | integer | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :buy
