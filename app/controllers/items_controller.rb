@@ -25,13 +25,5 @@ class ItemsController < ApplicationController
                                  
   end
 
-  def calculate
-    item = Item.find(params[:selling_price])
-    if item.checked 
-      
-    end
-
-    price = Item.find(params[:selling_price])
-    render json: { post: price }
-  end
+  
 end
