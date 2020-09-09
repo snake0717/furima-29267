@@ -20,6 +20,15 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :name, :explanation, :category_id, :status_id, :shipping_charge_id,
                                  :shipping_region_id, :shipping_day_id, :selling_price, :user_id)
                                  
+  end
 
+  def calculate
+    item = Item.find(params[:selling_price])
+    if item.checked 
+      
+    end
+
+    price = Item.find(params[:selling_price])
+    render json: { post: price }
   end
 end
