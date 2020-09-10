@@ -25,11 +25,11 @@ class Item < ApplicationRecord
   validates :shipping_charge_id , presence: true,
                                   numericality: { other_than: 1 } 
 
-  validates :shipping_region , presence: true
-                              #  numericality: { other_than: 1 } 
+  validates :shipping_region_id , presence: true,
+                               numericality: { other_than: 1 } 
 
-  validates :shipping_day , presence: true
-                            # numericality: { other_than: 1 } 
+  validates :shipping_day_id , presence: true,
+                            numericality: { other_than: 1 } 
 
   validates :selling_price , presence: true,
                              format: { with: /\A[0-9]+\z/ },
