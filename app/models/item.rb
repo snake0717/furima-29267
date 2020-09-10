@@ -16,20 +16,25 @@ class Item < ApplicationRecord
   validates :explanation , presence: true,
                            length: {maximum: 1000}
   
-  validates :category_id , presence: true
+  validates :category_id , presence: true,
+                           numericality: { other_than: 1 } 
 
-  validates :status_id , presence: true
+  validates :status_id , presence: true,
+                         numericality: { other_than: 1 } 
 
-  validates :shipping_charge_id , presence: true
+  validates :shipping_charge_id , presence: true,
+                                  numericality: { other_than: 1 } 
 
   validates :shipping_region , presence: true
+                              #  numericality: { other_than: 1 } 
 
   validates :shipping_day , presence: true
+                            # numericality: { other_than: 1 } 
 
   validates :selling_price , presence: true,
-                             format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i },
-                             numericality: {greater_than: 299},
-                             numericality: {less_than: 10000000}
+                             format: { with: /\A[0-9]+\z/ },
+                             numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+                            
 
   
 
