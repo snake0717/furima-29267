@@ -11,7 +11,6 @@ RSpec.describe Item, type: :model do
       it '全ての項目が入力されていると登録できる' do
         expect(@item).to be_valid
       end
-      
     end
 
     context '商品出品がうまくいかないとき' do
@@ -48,7 +47,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが---だと登録できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it '商品の状態が空だと登録できない' do
         @item.status_id = ''
@@ -58,7 +57,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態が---だと登録できない' do
         @item.status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 1")
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
       it '配送料の負担が空だと登録できない' do
         @item.shipping_charge_id = ''
@@ -68,7 +67,7 @@ RSpec.describe Item, type: :model do
       it '配送料の負担が---だと登録できない' do
         @item.shipping_charge_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping charge must be other than 1')
       end
       it '発送元の地域が空だと登録できない' do
         @item.shipping_region_id = ''
@@ -78,7 +77,7 @@ RSpec.describe Item, type: :model do
       it '発送元の地域が---だと登録できない' do
         @item.shipping_region_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping region must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping region must be other than 1')
       end
       it '発送までの日数が空だと登録できない' do
         @item.shipping_day_id = ''
@@ -88,17 +87,17 @@ RSpec.describe Item, type: :model do
       it '発送元の地域が---だと登録できない' do
         @item.shipping_day_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping day must be other than 1')
       end
       it '販売価格が300より小さいと登録できない' do
         @item.selling_price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Selling price must be greater than or equal to 300')
       end
       it '販売価格が9999999より小さいと登録できない' do
         @item.selling_price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Selling price must be less than or equal to 9999999')
       end
     end
   end
