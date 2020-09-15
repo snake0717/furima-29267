@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
     @items = Item.all.order('updated_at DESC')
   end
@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def update
     @item.update(item_params)
     if @item.valid?
@@ -25,6 +24,14 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :show
+      end
   end
 
   private
