@@ -20,9 +20,9 @@ class OrdersController < ApplicationController
   private
 
   def adress_params
-    params.require(:adress).permit(:postal_code, :shipping_region_id, :city, :adress, :status_id, :building_name,
-                                 :phone_number, :order_id)
+    params.permit(
+      :postal_code, :shipping_region_id, :city, :adress, :bulilding_name,:phone_number, :order_id
+    )
   end
-
   
 end
