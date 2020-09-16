@@ -5,12 +5,12 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @adress = Adress.new
+    @shipping_address = ShippingAddress.new
   end
 
   def create
-    @adress = Adress.new(adress_params)
-    if @adress.save
+    @shipping_address = ShippingAddress.new(address_params)
+    if @shipping_address.save
       redirect_to root_path
     else
       render :index
@@ -19,9 +19,9 @@ class OrdersController < ApplicationController
 
   private
 
-  def adress_params
+  def address_params
     params.permit(
-      :postal_code, :shipping_region_id, :city, :adress, :bulilding_name,:phone_number, :order_id
+      :postal_code, :shipping_region_id, :city, :address, :building_name,:phone_number, :order_id
     )
   end
   
