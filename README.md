@@ -57,10 +57,10 @@
 | postal code         | string     | null: false                    |
 | shipping_region_id  | integer    | null: false                    |
 | city                | string     | null: false                    |
-| adress              | string     | null: false                    |
+| address             | string     | null: false                    |
 | bulilding_name      | string     |                                |
 | phone_number        | string     | null: false                    |
-| buy                 | references | null: false, foreign_key: true |
+| order               | references | null: false, foreign_key: true |
 
 ### Association
 
