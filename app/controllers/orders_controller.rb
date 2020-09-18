@@ -9,12 +9,12 @@ class OrdersController < ApplicationController
   end
 
   def create
-    
+    @item = Item.find(params[:item_id])
     @order = OrderAddress.new(order_params)
+    
     if @order.valid?
-      pay_item
-    end
-    if @order.save
+       pay_item
+       @order.save
       redirect_to root_path
     else
       render :index
