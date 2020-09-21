@@ -27,12 +27,12 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号が数字でないと登録できない' do
         @order_address.postal_code = 'あああ'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
       it '都道府県が---だと登録できない' do
         @order_address.shipping_region_id = '1'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Shipping region must be other than 1")
+        expect(@order_address.errors.full_messages).to include('Shipping region must be other than 1')
       end
       it '市区町村が空だと登録できない' do
         @order_address.city = ''
@@ -52,10 +52,8 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が数字でないと登録できない' do
         @order_address.phone_number = 'あああ'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
-
-
     end
   end
 end
