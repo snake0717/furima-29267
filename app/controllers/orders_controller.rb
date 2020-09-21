@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_item, only: [:index, :create, :pay_item]
-
+  before_action :authenticate_user!, :redirect_item_user, :redirect_user, :redirect_user
+  before_action :set_item, only: [:index, :create, :pay_item, :redirect_item_user]
   
   def index
     
@@ -23,6 +22,19 @@ class OrdersController < ApplicationController
 
   private
 
+  def redirect_item_user
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def redirect_user
+    if current_user.id = nil
+      redirect_to root_path
+    end
+  end
+
   def pay_item
    
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']    # PAY.JPテスト秘密鍵
@@ -40,4 +52,5 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
+  
 end
