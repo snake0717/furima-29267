@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       pay_item
-      binding.pry
       @order.save
       redirect_to root_path
     else
