@@ -1,17 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create, :pay_item]
 
-  def move_to_root_path
-    redirect_to root_path unless user_signed_in?
-  end
-
+  
   def index
-    @item = Item.find(params[:item_id])
+    
     @order = OrderAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
+    
     @order = OrderAddress.new(order_params)
 
     if @order.valid?
@@ -26,7 +24,7 @@ class OrdersController < ApplicationController
   private
 
   def pay_item
-    @item = Item.find(params[:item_id])
+   
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']    # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.selling_price, # 商品の値段
@@ -37,5 +35,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.permit(:token, :postal_code, :shipping_region_id, :city, :address, :building_name, :phone_number, :order_id, :item_id).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
