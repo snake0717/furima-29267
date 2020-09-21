@@ -1,14 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, :redirect_item_user, :redirect_user, :redirect_user
   before_action :set_item, only: [:index, :create, :pay_item, :redirect_item_user]
-  
+
   def index
-    
     @order = OrderAddress.new
   end
 
   def create
-    
     @order = OrderAddress.new(order_params)
 
     if @order.valid?
@@ -24,19 +22,14 @@ class OrdersController < ApplicationController
 
   def redirect_item_user
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id
   end
 
   def redirect_user
-    if current_user.id = nil
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id = nil
   end
 
   def pay_item
-   
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']    # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.selling_price, # 商品の値段
@@ -52,5 +45,4 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
-  
 end
