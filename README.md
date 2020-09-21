@@ -37,6 +37,8 @@
 - belongs_to :user
 - has_one :buy
 
+
+
 ## orders テーブル
 
 | Column                | Type       | Options                        |
