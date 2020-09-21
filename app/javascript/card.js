@@ -4,7 +4,7 @@ const pay = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
  
-    console.log(form)
+    
 
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
