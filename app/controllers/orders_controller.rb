@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, :redirect_item_user, :redirect_user, :redirect_user
+  before_action :authenticate_user!, :redirect_item_user, :redirect_order_item
   before_action :set_item, only: [:index, :create, :pay_item, :redirect_item_user]
 
   def index
@@ -25,8 +25,8 @@ class OrdersController < ApplicationController
     redirect_to root_path if current_user.id == @item.user_id
   end
 
-  def redirect_user
-    redirect_to root_path if current_user.id = nil
+  def redirect_order_item
+    redirect_to root_path if @item.order.present?
   end
 
   def pay_item
