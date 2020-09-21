@@ -19,6 +19,7 @@ class OrderAddress
 
     validates :address
 
-    validates :phone_number, format: { with: /\A[0-9]+\z/ }
+    validates :phone_number, format: { with: /\A[0-9]+\z/ },
+                             length: { maximum: 11 }
   end
 end
