@@ -11,8 +11,8 @@ class OrderAddress
   end
 
   with_options presence: true do
-    
-    validates :token,          format: { with: /\A[a-zA-Z0-9]+\z/}
+
+    validates :token
 
     validates :postal_code,    format: {with: /\A\d{3}[-]\d{4}\z/	}
 
